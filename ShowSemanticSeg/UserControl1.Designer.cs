@@ -37,10 +37,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(236, 0);
+            this.button1.Location = new System.Drawing.Point(315, 0);
             this.button1.Margin = new System.Windows.Forms.Padding(0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(32, 18);
+            this.button1.Size = new System.Drawing.Size(43, 22);
             this.button1.TabIndex = 0;
             this.button1.Text = "+";
             this.button1.UseVisualStyleBackColor = true;
@@ -48,10 +48,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(268, 0);
+            this.button2.Location = new System.Drawing.Point(357, 0);
             this.button2.Margin = new System.Windows.Forms.Padding(0);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(32, 18);
+            this.button2.Size = new System.Drawing.Size(43, 22);
             this.button2.TabIndex = 1;
             this.button2.Text = "-";
             this.button2.UseVisualStyleBackColor = true;
@@ -61,20 +61,21 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(0, 0);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(80, 16);
+            this.checkBox1.Size = new System.Drawing.Size(101, 19);
             this.checkBox1.TabIndex = 3;
             this.checkBox1.Text = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged_1);
             // 
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(201, 0);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Location = new System.Drawing.Point(268, 0);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(32, 18);
+            this.button3.Size = new System.Drawing.Size(43, 22);
             this.button3.TabIndex = 4;
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.Button3_Click);
@@ -85,7 +86,7 @@
             // 
             // UserControl1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.button3);
             this.Controls.Add(this.checkBox1);
@@ -93,7 +94,8 @@
             this.Controls.Add(this.button1);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "UserControl1";
-            this.Size = new System.Drawing.Size(300, 18);
+            this.Size = new System.Drawing.Size(400, 22);
+            this.DoubleClick += new System.EventHandler(this.UserControl1_DoubleClick);
             this.ResumeLayout(false);
             this.PerformLayout();
 

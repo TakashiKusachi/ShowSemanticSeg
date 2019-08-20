@@ -15,7 +15,7 @@ namespace ShowSemanticSeg
         Form1 parent;
 
         public string FileName { get; }
-        public bool Enable { get { return this.checkBox1.Checked; } }
+        public bool Enable { get { return this.checkBox1.Checked; }set { this.checkBox1.Checked = value; } }
 
         public Color Color { get { return this.colorDialog1.Color; } }
 
@@ -37,11 +37,6 @@ namespace ShowSemanticSeg
             this.parent.DeccIndex(this);
         }
 
-        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            this.parent.picture_update();
-        }
-
         private void Button3_Click(object sender, EventArgs e)
         {
             var dialog = this.colorDialog1;
@@ -50,6 +45,16 @@ namespace ShowSemanticSeg
             {
                 this.button3.BackColor = dialog.Color;
             }
+            this.parent.picture_update();
+        }
+
+        private void UserControl1_DoubleClick(object sender, EventArgs e)
+        {
+            this.parent.OnlySelect(this);
+        }
+
+        private void CheckBox1_CheckedChanged_1(object sender, EventArgs e)
+        {
             this.parent.picture_update();
         }
     }

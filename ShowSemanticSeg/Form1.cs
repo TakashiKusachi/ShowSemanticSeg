@@ -84,6 +84,16 @@ namespace ShowSemanticSeg
             this.picture_update();
         }
 
+        public void OnlySelect(Control obj)
+        {
+            foreach (var element in this.panel1.Controls)
+            {
+                if (element == obj)((UserControl1)element).Enable = true;
+                else ((UserControl1)element).Enable = false;
+            }
+            this.picture_update();
+        }
+
         public async void picture_update()
         {
             this.panel1.Invalidate();
@@ -100,10 +110,11 @@ namespace ShowSemanticSeg
             }
             var ret = await Task<Bitmap>.WhenAll( tasks);
 
-            var temp = new Bitmap(this.pictureBox1.Width, this.pictureBox1.Height);
+            Bitmap temp = null;
             foreach (var element in ret)
             {
                 if (element == null) continue;
+                if (temp == null) temp = new Bitmap(element.Width, element.Height);
 
                 element.MakeTransparent(Color.Black);
 
@@ -120,10 +131,12 @@ namespace ShowSemanticSeg
                     new System.Drawing.Imaging.ImageAttributes();
                 //ColorMatrixを設定する
                 ia.SetColorMatrix(cm);
-                Graphics.FromImage(temp).DrawImage(
+                var g = Graphics.FromImage(temp);
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.DrawImage(
                     element,
-                    new Rectangle(0,0,element.Width,element.Height),
-                    0,0,this.pictureBox1.Width,this.pictureBox1.Height,
+                    new Rectangle(0,0,temp.Width,temp.Height),
+                    0,0, element.Width, element.Height,
                     GraphicsUnit.Pixel,ia);
             }
             this.pictureBox1.Image = temp;
@@ -164,6 +177,40 @@ namespace ShowSemanticSeg
             {
                 element.Top = element.Height * count++;
             }
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            var ret = saveFileDialog1.ShowDialog();
+            if ( ret == DialogResult.OK)
+            {
+                var name = saveFileDialog1.FileName;
+                this.pictureBox1.Image.Save(name);
+            }
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            this.panel2.Location = new System.Drawing.Point(
+                (int)((this.Size.Width - this.ClientSize.Width) / 2),
+                (int)(this.menuStrip1.Height)
+                );
+            this.panel2.Size = new System.Drawing.Size(
+                (int)(this.ClientSize.Width - this.panel3.Width),
+                (int)(this.ClientSize.Height - this.menuStrip1.Height)
+                );
+            this.panel3.Location = new System.Drawing.Point(
+                (int)((this.Size.Width - this.ClientSize.Width) / 2 + this.panel2.Width),
+                (int)(this.menuStrip1.Height)
+                );
+            this.panel3.Size = new System.Drawing.Size(
+                (int)(400),
+                (int)(this.ClientSize.Height - this.menuStrip1.Height)
+                );
+            this.button1.Location = new System.Drawing.Point(
+                30,
+                this.panel3.ClientSize.Height - this.button1.Size.Height
+                );
         }
     }
 }
