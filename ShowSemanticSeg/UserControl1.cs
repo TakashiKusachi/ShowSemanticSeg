@@ -13,10 +13,12 @@ namespace ShowSemanticSeg
     public partial class UserControl1 : UserControl
     {
         Form1 parent;
-        string file_name;
 
         public string FileName { get; }
         public bool Enable { get { return this.checkBox1.Checked; } }
+
+        public Color Color { get { return this.colorDialog1.Color; } }
+
         public UserControl1(string name,Form1 parent)
         {
             InitializeComponent();
@@ -37,7 +39,18 @@ namespace ShowSemanticSeg
 
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
-            this.parent.Refresh();
+            this.parent.picture_update();
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            var dialog = this.colorDialog1;
+            dialog.ShowHelp = true;
+            if ( dialog.ShowDialog(this.parent) == DialogResult.OK)
+            {
+                this.button3.BackColor = dialog.Color;
+            }
+            this.parent.picture_update();
         }
     }
 }
