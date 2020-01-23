@@ -45,28 +45,23 @@ namespace ShowSemanticSeg
             {
                 string file_name;
 
-                using (var dialog = new System.Windows.Forms.OpenFileDialog()) {
+                using (var dialog = new System.Windows.Forms.FolderBrowserDialog()) {
                     if (dialog.ShowDialog() != DialogResult.OK) return;
-                    file_name = dialog.FileName;
+                    file_name = dialog.SelectedPath;
                     this.label2.Text = file_name;
                 }
-
-                using (var zipFile = ZipFile.Open(file_name, ZipArchiveMode.Read))
+                foreach (var name in Directory.GetFiles(file_name, "*.png"))
                 {
-                    this.panel1.Controls.Clear();
-                    foreach (ZipArchiveEntry entry in zipFile.Entries)
-                    {
-                        var name = entry.FullName;
-                        file_list.Add(name);
-                        var cont = new UserControl1(name, this);
-                        this.panel1.Controls.Add(cont);
-                    }
+                    file_list.Add(name);
+                    var cont = new UserControl1(name, this);
+                    this.panel1.Controls.Add(cont);
                 }
             }
             catch (NotSupportedException exce)
             {
                 return;
             }
+            this.panel1.Invalidate();
         }
 
         public void IncIndex(Control obj)
@@ -148,12 +143,9 @@ namespace ShowSemanticSeg
             var cont = args.Item1;
             var file_name = args.Item2;
             if (cont.Enable == false) return null;
-            Mat mat;
-            using (var archive = ZipFile.Open(file_name, ZipArchiveMode.Read))
-            using (var entry = archive.GetEntry(cont.FileName).Open())
-            {
-                mat = new Bitmap(entry).ToMat();
-            }
+
+            Mat mat = new Mat(cont.FileName);
+
             var hsv_mat = mat.CvtColor(ColorConversionCodes.BGR2HSV);
             for (int i = 0; i < hsv_mat.Height; i++)
             {
@@ -211,6 +203,11 @@ namespace ShowSemanticSeg
                 30,
                 this.panel3.ClientSize.Height - this.button1.Size.Height
                 );
+        }
+
+        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
         }
     }
 }

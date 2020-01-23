@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\OpenCvSharp3-AnyCPU.4.0.0.20181129\build\OpenCvSharp3-AnyCPU.props" Condition="Exists('..\packages\OpenCvSharp3-AnyCPU.4.0.0.20181129\build\OpenCvSharp3-AnyCPU.props')" />
+  <Import Project="..\packages\OpenCvSharp3-AnyCPU.3.2.0.20171112\build\OpenCvSharp3-AnyCPU.props" Condition="Exists('..\packages\OpenCvSharp3-AnyCPU.3.2.0.20171112\build\OpenCvSharp3-AnyCPU.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -15,6 +15,22 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\scas\Desktop\ShowSeg\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,18 +51,30 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>3EB4679DD0C3F68A20A4FB900018CF4C316D0204</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>ShowSemanticSeg_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenCvSharp3-AnyCPU.4.0.0.20181129\lib\net461\OpenCvSharp.dll</HintPath>
+      <HintPath>..\packages\OpenCvSharp3-AnyCPU.3.2.0.20171112\lib\net46\OpenCvSharp.dll</HintPath>
     </Reference>
     <Reference Include="OpenCvSharp.Blob, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenCvSharp3-AnyCPU.4.0.0.20181129\lib\net461\OpenCvSharp.Blob.dll</HintPath>
+      <HintPath>..\packages\OpenCvSharp3-AnyCPU.3.2.0.20171112\lib\net46\OpenCvSharp.Blob.dll</HintPath>
     </Reference>
     <Reference Include="OpenCvSharp.Extensions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenCvSharp3-AnyCPU.4.0.0.20181129\lib\net461\OpenCvSharp.Extensions.dll</HintPath>
+      <HintPath>..\packages\OpenCvSharp3-AnyCPU.3.2.0.20171112\lib\net46\OpenCvSharp.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="OpenCvSharp.UserInterface, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenCvSharp3-AnyCPU.4.0.0.20181129\lib\net461\OpenCvSharp.UserInterface.dll</HintPath>
+      <HintPath>..\packages\OpenCvSharp3-AnyCPU.3.2.0.20171112\lib\net46\OpenCvSharp.UserInterface.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -112,15 +140,33 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="ShowSemanticSeg_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 および x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="OpenCvSharpExtern.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>このプロジェクトは、このコンピューター上にない NuGet パッケージを参照しています。それらのパッケージをダウンロードするには、[NuGet パッケージの復元] を使用します。詳細については、http://go.microsoft.com/fwlink/?LinkID=322105 を参照してください。見つからないファイルは {0} です。</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\OpenCvSharp3-AnyCPU.4.0.0.20181129\build\OpenCvSharp3-AnyCPU.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\OpenCvSharp3-AnyCPU.4.0.0.20181129\build\OpenCvSharp3-AnyCPU.props'))" />
+    <Error Condition="!Exists('..\packages\OpenCvSharp3-AnyCPU.3.2.0.20171112\build\OpenCvSharp3-AnyCPU.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\OpenCvSharp3-AnyCPU.3.2.0.20171112\build\OpenCvSharp3-AnyCPU.props'))" />
   </Target>
 </Project>

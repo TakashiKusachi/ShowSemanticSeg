@@ -23,7 +23,7 @@ namespace ShowSemanticSeg
         {
             InitializeComponent();
             this.FileName = name;
-            this.checkBox1.Text = this.FileName;
+            this.checkBox1.Text = System.IO.Path.GetFileName(this.FileName);
             this.parent = parent;
         }
 
